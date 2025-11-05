@@ -1,5 +1,7 @@
 "
-Please describe the package using the class comment of the included manifest class. The manifest class also includes other additional metadata for the package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser
+Classes for solving Advent of Code 2025. This includes utility libraries for opening the input files, doing geometry puzzles and grid puzzles.
+
+Solutions will be added as the event progresses.
 "
 Class {
 	#name : 'ManifestAdventOfCode2025',

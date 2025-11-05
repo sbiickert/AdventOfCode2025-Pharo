@@ -10,6 +10,26 @@ Class {
 }
 
 { #category : 'General' }
+AoCInput class >> fileNameForDay: anInteger isTest: aBoolean [
+
+	| paddedDay str |
+	paddedDay := String streamContents: [ :s |
+			             anInteger
+				             printOn: s
+				             base: 10
+				             length: 2
+				             padded: true ].
+	str := aBoolean ifTrue: ['test'] ifFalse: ['challenge'].
+	^ self path , '/day{1}_{2}.txt' format: { paddedDay. str }
+
+]
+
+{ #category : 'accessing' }
+AoCInput class >> path [
+	^ '/Users/sjb/Developer/Advent of Code/2025/AdventOfCode2025/Input' 
+]
+
+{ #category : 'General' }
 AoCInput class >> readGroupedInputFrom: fileName [
 	| lines groups group |
 	lines := self readInputFrom: fileName.

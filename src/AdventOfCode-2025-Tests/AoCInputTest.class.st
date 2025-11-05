@@ -6,6 +6,30 @@ Class {
 	#tag : 'Testing'
 }
 
+{ #category : 'running' }
+AoCInputTest >> setUp [
+	super setUp.
+	"Additional setup here"
+]
+
+{ #category : 'tests' }
+AoCInputTest >> testFileName [
+	| testName challengeName |
+	testName := AoCInput fileNameForDay:1 isTest:true.
+	self assert: testName equals: AoCInput path, '/day01_test.txt'.
+	
+	testName := AoCInput fileNameForDay:12 isTest:true.
+	self assert: testName equals: AoCInput path, '/day12_test.txt'.
+	
+	challengeName := AoCInput fileNameForDay:1 isTest:false.
+	self assert: challengeName equals: AoCInput path, '/day01_challenge.txt'.
+]
+
+{ #category : 'tests' }
+AoCInputTest >> testInitialize [
+	self assert: AoCInput path equals: '/Users/sjb/Developer/Advent of Code/2025/AdventOfCode2025/Input'
+]
+
 { #category : 'tests' }
 AoCInputTest >> testReadGroupedInput [
 	| f groups |

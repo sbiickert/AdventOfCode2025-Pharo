@@ -1,8 +1,9 @@
 Class {
 	#name : 'AoCCounterTest',
 	#superclass : 'TestCase',
-	#category : 'AdventOfCode-2025-Tests',
-	#package : 'AdventOfCode-2025-Tests'
+	#category : 'AdventOfCode-2025-Tests-Testing',
+	#package : 'AdventOfCode-2025-Tests',
+	#tag : 'Testing'
 }
 
 { #category : 'tests' }
