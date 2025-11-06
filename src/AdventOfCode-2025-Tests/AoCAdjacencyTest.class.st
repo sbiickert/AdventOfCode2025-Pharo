@@ -1,6 +1,3 @@
-"
-Enumeration class for defining rook, bishop and queen rules.
-"
 Class {
 	#name : 'AoCAdjacencyTest',
 	#superclass : 'TestCase',
@@ -11,7 +8,6 @@ Class {
 
 { #category : 'tests' }
 AoCAdjacencyTest >> testEquality [
-
 	| r b q r1 |
 	r := AoCAdjacency rook.
 	r1 := AoCAdjacency rook.
@@ -19,5 +15,5 @@ AoCAdjacencyTest >> testEquality [
 	b := AoCAdjacency bishop.
 	self assert: r ~= b.
 	q := AoCAdjacency queen.
-	self assert: q ~= b.
+	self assert: q ~= b. 
 ]
