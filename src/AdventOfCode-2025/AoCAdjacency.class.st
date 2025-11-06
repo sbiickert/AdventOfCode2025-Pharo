@@ -6,30 +6,30 @@ Enumeration class to define sets of the 8 adjacent coordinates.
 - queen: all 8 of the adjacent coordinates (i.e. the union of rook and bishop)
 "
 Class {
-	#name : 'AoCAdjacency',
-	#superclass : 'AoCEnum',
+	#name : 'AOCAdjacency',
+	#superclass : 'AOCEnum',
 	#category : 'AdventOfCode-2025-Util',
 	#package : 'AdventOfCode-2025',
 	#tag : 'Util'
 }
 
 { #category : 'enumeration' }
-AoCAdjacency class >> bishop [
+AOCAdjacency class >> bishop [
 	^ self new value: #bishop.
 ]
 
 { #category : 'enumeration' }
-AoCAdjacency class >> queen [
+AOCAdjacency class >> queen [
 	^ self new value: #queen.
 ]
 
 { #category : 'enumeration' }
-AoCAdjacency class >> rook [
+AOCAdjacency class >> rook [
 	^ self new value: #rook.
 ]
 
 { #category : 'translation' }
-AoCAdjacency >> directions [
+AOCAdjacency >> directions [
 	| cases dirs |
 	cases := Dictionary new.
 	cases at: self class rook put: #( 'N' 'E' 'S' 'W' ).
@@ -37,6 +37,6 @@ AoCAdjacency >> directions [
 	cases at: self class queen put: #( 'N' 'NE' 'E' 'SE' 'S' 'SW' 'W' 'NW' ).
 	
 	
-	dirs := (cases at: self) collect: [ :d | AoCDir fromString: d ].
+	dirs := (cases at: self) collect: [ :d | AOCDir fromString: d ].
 	^ dirs.
 ]

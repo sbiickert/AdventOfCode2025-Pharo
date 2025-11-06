@@ -2,20 +2,20 @@
 Enumeration of the 8 cardinal directions in two dimensions.
 "
 Class {
-	#name : 'AoCDir',
-	#superclass : 'AoCEnum',
+	#name : 'AOCDir',
+	#superclass : 'AOCEnum',
 	#category : 'AdventOfCode-2025-Util',
 	#package : 'AdventOfCode-2025',
 	#tag : 'Util'
 }
 
 { #category : 'enumeration' }
-AoCDir class >> east [
+AOCDir class >> east [
 	^ self new value: #east.
 ]
 
 { #category : 'instance creation' }
-AoCDir class >> fromString: dirString [
+AOCDir class >> fromString: dirString [
 	| ucDir |
 	ucDir := dirString asUppercase.
 	(#('N' 'U' '^') includes: ucDir) ifTrue: [^ self north].
@@ -30,36 +30,36 @@ AoCDir class >> fromString: dirString [
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> ne [
+AOCDir class >> ne [
 	^ self new value: #ne.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> north [
+AOCDir class >> north [
 	^ self new value: #north.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> nw [
+AOCDir class >> nw [
 	^ self new value: #nw.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> se [
+AOCDir class >> se [
 	^ self new value: #se.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> south [
+AOCDir class >> south [
 	^ self new value: #south.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> sw [
+AOCDir class >> sw [
 	^ self new value: #sw.
 ]
 
 { #category : 'enumeration' }
-AoCDir class >> west [
+AOCDir class >> west [
 	^ self new value: #west.
 ]

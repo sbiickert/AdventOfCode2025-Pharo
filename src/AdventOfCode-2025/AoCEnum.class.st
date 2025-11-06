@@ -2,7 +2,7 @@
 Base class for enumerations.
 "
 Class {
-	#name : 'AoCEnum',
+	#name : 'AOCEnum',
 	#superclass : 'Object',
 	#instVars : [
 		'value'
@@ -13,29 +13,29 @@ Class {
 }
 
 { #category : 'comparing' }
-AoCEnum >> = anEnum [
+AOCEnum >> = anEnum [
 	^ self class = anEnum class and: [ self value = anEnum value ]
 ]
 
 { #category : 'comparing' }
-AoCEnum >> hash [
+AOCEnum >> hash [
 	^ self class hash bitXor: self value hash.
 ]
 
 { #category : 'printing' }
-AoCEnum >> printOn: aStream [
+AOCEnum >> printOn: aStream [
 	super printOn: aStream.
 	aStream << '(' << self value asString << ')'.
 	^ self.
 ]
 
 { #category : 'evaluating' }
-AoCEnum >> value [
+AOCEnum >> value [
 	^ value.
 ]
 
 { #category : 'accessing' }
-AoCEnum >> value: aValue [
+AOCEnum >> value: aValue [
 	value := aValue.
 	^ self.
 ]

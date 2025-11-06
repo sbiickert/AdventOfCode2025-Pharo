@@ -2,7 +2,7 @@
 The input capabilities for loading puzzle data.
 "
 Class {
-	#name : 'AoCInput',
+	#name : 'AOCInput',
 	#superclass : 'Object',
 	#category : 'AdventOfCode-2025-Util',
 	#package : 'AdventOfCode-2025',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : 'accessing' }
-AoCInput class >> fileNameForDay: anInteger isTest: aBoolean [
+AOCInput class >> fileNameForDay: anInteger isTest: aBoolean [
 
 	| paddedDay str |
 	paddedDay := String streamContents: [ :s |
@@ -25,12 +25,12 @@ AoCInput class >> fileNameForDay: anInteger isTest: aBoolean [
 ]
 
 { #category : 'accessing' }
-AoCInput class >> path [
+AOCInput class >> path [
 	^ '/Users/sjb/Developer/Advent of Code/2025/AdventOfCode2025/Input' 
 ]
 
 { #category : 'reading' }
-AoCInput class >> readGroupedInputFrom: fileName [
+AOCInput class >> readGroupedInputFrom: fileName [
 	| lines groups group |
 	lines := self readInputFrom: fileName.
 	groups := OrderedCollection new.
@@ -47,13 +47,13 @@ AoCInput class >> readGroupedInputFrom: fileName [
 ]
 
 { #category : 'reading' }
-AoCInput class >> readInputFrom: fileName [
+AOCInput class >> readInputFrom: fileName [
 	^ self readInputFrom: fileName removeEmptyLines: false.
 
 ]
 
 { #category : 'reading' }
-AoCInput class >> readInputFrom: fileName removeEmptyLines: aBoolean [
+AOCInput class >> readInputFrom: fileName removeEmptyLines: aBoolean [
 	| fileRef lines |
 	lines := OrderedCollection new.
 	fileRef := fileName asFileReference.
