@@ -9,7 +9,7 @@ Class {
 	#tag : 'Util'
 }
 
-{ #category : 'General' }
+{ #category : 'accessing' }
 AoCInput class >> fileNameForDay: anInteger isTest: aBoolean [
 
 	| paddedDay str |
@@ -29,7 +29,7 @@ AoCInput class >> path [
 	^ '/Users/sjb/Developer/Advent of Code/2025/AdventOfCode2025/Input' 
 ]
 
-{ #category : 'General' }
+{ #category : 'reading' }
 AoCInput class >> readGroupedInputFrom: fileName [
 	| lines groups group |
 	lines := self readInputFrom: fileName.
@@ -46,13 +46,13 @@ AoCInput class >> readGroupedInputFrom: fileName [
 	^ groups
 ]
 
-{ #category : 'General' }
+{ #category : 'reading' }
 AoCInput class >> readInputFrom: fileName [
 	^ self readInputFrom: fileName removeEmptyLines: false.
 
 ]
 
-{ #category : 'General' }
+{ #category : 'reading' }
 AoCInput class >> readInputFrom: fileName removeEmptyLines: aBoolean [
 	| fileRef lines |
 	lines := OrderedCollection new.

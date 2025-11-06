@@ -7,54 +7,36 @@ Enumeration class to define sets of the 8 adjacent coordinates.
 "
 Class {
 	#name : 'AoCAdjacency',
-	#superclass : 'Object',
-	#instVars : [
-		'value'
-	],
+	#superclass : 'AoCEnum',
 	#category : 'AdventOfCode-2025-Util',
 	#package : 'AdventOfCode-2025',
 	#tag : 'Util'
 }
 
-{ #category : 'Enumeration' }
+{ #category : 'enumeration' }
 AoCAdjacency class >> bishop [
 	^ self new value: #bishop.
 ]
 
-{ #category : 'Enumeration' }
+{ #category : 'enumeration' }
 AoCAdjacency class >> queen [
 	^ self new value: #queen.
 ]
 
-{ #category : 'Enumeration' }
+{ #category : 'enumeration' }
 AoCAdjacency class >> rook [
 	^ self new value: #rook.
 ]
 
-{ #category : 'comparing' }
-AoCAdjacency >> = anEnum [
-	^ self class = anEnum class and: [ self value = anEnum value ]
-]
-
-{ #category : 'comparing' }
-AoCAdjacency >> hash [ 
-	^ self class hash bitXor: self value hash.
-]
-
-{ #category : 'printing' }
-AoCAdjacency >> printOn: aStream [
-	super printOn: aStream.
-	aStream << '(' << self value asString << ')'.
-	^ self.
-]
-
-{ #category : 'evaluating' }
-AoCAdjacency >> value [
-	^ value.
-]
-
-{ #category : 'accessing' }
-AoCAdjacency >> value: aValue [
-	value := aValue.
-	^ self.
+{ #category : 'translation' }
+AoCAdjacency >> directions [
+	| cases dirs |
+	cases := Dictionary new.
+	cases at: self class rook put: #( 'N' 'E' 'S' 'W' ).
+	cases at: self class bishop put: #( 'NE' 'SE' 'SW' 'NW' ).
+	cases at: self class queen put: #( 'N' 'NE' 'E' 'SE' 'S' 'SW' 'W' 'NW' ).
+	
+	
+	dirs := (cases at: self) collect: [ :d | AoCDir fromString: d ].
+	^ dirs.
 ]
