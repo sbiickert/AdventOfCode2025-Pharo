@@ -78,6 +78,22 @@ AOCCoord >> initialize [
 ]
 
 { #category : 'comparing' }
+AOCCoord >> isAdjacentTo: aCoord rule: adjacency [
+	|supportsHoriz supportsDiag md delta|
+	supportsHoriz := adjacency = AOCAdjacency rook or: adjacency = AOCAdjacency queen .
+	supportsDiag :=  adjacency = AOCAdjacency bishop or: adjacency = AOCAdjacency queen .
+	
+	md := self manhattanDistanceTo: aCoord .
+	(md = 1 and: supportsHoriz )
+		ifTrue: [ ^ true ] .
+	delta := self delta: aCoord .
+	(delta x abs = 1 and: ([delta y abs = 1] and: supportsDiag ))
+		ifTrue: [  ^ true ] .
+		
+	^ false .
+]
+
+{ #category : 'comparing' }
 AOCCoord >> manhattanDistanceTo: aCoord [
 	| delta |
 	delta := self delta: aCoord .
