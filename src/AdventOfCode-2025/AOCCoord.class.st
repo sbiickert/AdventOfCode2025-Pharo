@@ -36,6 +36,11 @@ AOCCoord >> + aCoord [
 	^ self class new point: (pt + aCoord point) .
 ]
 
+{ #category : 'arithmetic' }
+AOCCoord >> - aCoord [
+	^ self delta: aCoord .
+]
+
 { #category : 'comparing' }
 AOCCoord >> = aCoord [
 	^ self class = aCoord class and: [ pt = aCoord point ].
@@ -51,6 +56,11 @@ AOCCoord >> adjacentCoordsForRule: adjacencyRule [
 { #category : 'converting' }
 AOCCoord >> asString [
 	^ '[{1},{2}]' format: { self x. self y }
+]
+
+{ #category : 'accessing - structure variables' }
+AOCCoord >> col [
+	^ pt x .
 ]
 
 { #category : 'comparing' }
@@ -87,7 +97,7 @@ AOCCoord >> isAdjacentTo: aCoord rule: adjacency [
 	(md = 1 and: supportsHoriz )
 		ifTrue: [ ^ true ] .
 	delta := self delta: aCoord .
-	(delta x abs = 1 and: ([delta y abs = 1] and: supportsDiag ))
+	(delta x abs = 1 and: ((delta y abs = 1) and: supportsDiag ))
 		ifTrue: [  ^ true ] .
 		
 	^ false .
@@ -100,6 +110,15 @@ AOCCoord >> manhattanDistanceTo: aCoord [
 	^ (delta x abs) + (delta y abs)
 ]
 
+{ #category : 'arithmetic' }
+AOCCoord >> offset: aDir distance: dist [
+	| off |
+	off := self class offset: aDir .
+	off x: off x * dist .
+	off y: off y * dist . 
+	^ self + off . 
+]
+
 { #category : 'accessing' }
 AOCCoord >> point [
 	^ pt.
@@ -109,6 +128,11 @@ AOCCoord >> point [
 AOCCoord >> point: aPoint [
 	pt := aPoint.
 	^ self.
+]
+
+{ #category : 'accessing - structure variables' }
+AOCCoord >> row [
+	^ pt y .
 ]
 
 { #category : 'accessing - structure variables' }

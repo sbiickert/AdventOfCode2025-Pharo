@@ -106,20 +106,27 @@ AOCCoordTest >> testInitalize [
 	self assert: c x equals: 10.
 	self assert: c y equals: 30.
 	c := AOCCoord new x: 5; y: 8.
-	self assert: c x equals: 5.
-	self assert: c y equals: 8.
+	self assert: c col equals: 5.
+	self assert: c row equals: 8.
 	self assert: c point equals: 5 @ 8.
 
 ]
 
 { #category : 'tests' }
 AOCCoordTest >> testOffset [
-	|c1|
+	|c1 cOff|
 	c1 := AOCCoord offset: AOCDir north .
 	self assert: c1 equals: (AOCCoord new point: 0 @ -1) .
 	c1 := AOCCoord offset: (AOCDir fromString: '<') .
 	self assert: c1 equals: (AOCCoord new point: -1 @ 0) .
 	c1 := AOCCoord offset: (AOCDir fromString: '?') .
 	self assert: c1 equals: AOCCoord new .
+	
+	c1 := AOCCoord new point: 5@4 .
+	cOff := c1 offset: AOCDir sw distance: 1 .
+	self assert: cOff equals: (AOCCoord new point: 4@5) .
+	cOff := c1 offset: AOCDir east distance: 10 .
+	self assert: cOff equals: (AOCCoord new point: 15@4) .
+	
 	
 ]
