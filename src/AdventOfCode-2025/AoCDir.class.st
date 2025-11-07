@@ -26,12 +26,17 @@ AOCDir class >> fromString: dirString [
 	dirString asUppercase = 'SE' ifTrue: [^ self se].
 	dirString asUppercase = 'SW' ifTrue: [^ self sw ].
 	dirString asUppercase = 'NW' ifTrue: [^ self nw].
-	^ self north. "default"
+	^ self none. "default"
 ]
 
 { #category : 'enumeration' }
 AOCDir class >> ne [
 	^ self new value: #ne.
+]
+
+{ #category : 'enumeration' }
+AOCDir class >> none [
+	^ self new value: #none.
 ]
 
 { #category : 'enumeration' }
