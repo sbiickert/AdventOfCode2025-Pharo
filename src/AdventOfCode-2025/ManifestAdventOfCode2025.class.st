@@ -26,3 +26,10 @@ ManifestAdventOfCode2025 class >> ruleReNoNilAssignationInInitializeRuleV1FalseP
 	<ignoreForCoverage>
 	^ #(#(#(#RGMethodDefinition #(#AOCExtent #initialize #false)) #'2025-11-06T20:04:25.583359-07:00') )
 ]
+
+{ #category : 'code-critics' }
+ManifestAdventOfCode2025 class >> ruleStringConcatenationRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#AOCGrid #asString #false)) #'2025-11-08T13:21:55.36273-07:00') )
+]
