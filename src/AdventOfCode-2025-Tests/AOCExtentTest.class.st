@@ -65,6 +65,10 @@ AOCExtentTest >> testDimensions [
 	self assert: e width equals: 4 .
 	self assert: e height equals: 5 .
 	self assert: e area equals: 20 .
+	self assert: (e xInterval min) equals: 0 .	
+	self assert: (e xInterval max) equals: 3 .
+	self assert: (e yInterval min) equals: 0 .	
+	self assert: (e yInterval max) equals: 4 .
 ]
 
 { #category : 'tests' }
@@ -114,4 +118,30 @@ AOCExtentTest >> testInitialize [
 	e := AOCExtent fromInts: #(3 4 1 2) .
 	self assert: e min equals: (AOCCoord new point: 1 @ 2) .
 	self assert: e max equals: (AOCCoord new point: 3 @ 4) .
+]
+
+{ #category : 'tests' }
+AOCExtentTest >> testIntersect [
+	|e1 e2 result|
+	e1 := AOCExtent fromInts: #(1 1 10 10) .
+	e2 := AOCExtent fromInts: #(5 5 12 12) .
+	result := e1 intersect: e2 .
+	self assert: result equals: (AOCExtent fromInts: #(5 5 10 10)) .
+	
+	e2 := AOCExtent fromInts: #(5 5 7 7) .
+	result := e1 intersect: e2 .
+	self assert: result equals: (AOCExtent fromInts: #(5 5 7 7)) .
+		
+	e2 := AOCExtent fromInts: #(1 1 12 2) .
+	result := e1 intersect: e2 .
+	self assert: result equals: (AOCExtent fromInts: #(1 1 10 2)) .
+
+	e2 := AOCExtent fromInts: #(11 11 12 12) .
+	result := e1 intersect: e2 .
+	self assert: result isEmpty .
+	
+	e2 := AOCExtent fromInts: #(1 10 10 20)	.
+	result := e1 intersect: e2 .
+	self assert: result equals: (AOCExtent fromInts: #(1 10 10 10)) .
+
 ]

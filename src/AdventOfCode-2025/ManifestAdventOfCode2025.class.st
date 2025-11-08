@@ -7,6 +7,13 @@ Class {
 }
 
 { #category : 'code-critics' }
+ManifestAdventOfCode2025 class >> ruleBadMessageRule2V1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#AOCGrid #glyphAt: #false)) #'2025-11-08T07:18:22.671792-07:00') )
+]
+
+{ #category : 'code-critics' }
 ManifestAdventOfCode2025 class >> ruleReCollectionAtCollectionSizeRuleV1FalsePositive [
 
 	<ignoreForCoverage>

@@ -82,6 +82,11 @@ AOCExtent >> expandToFit: aCoord [
 	^ self .
 ]
 
+{ #category : 'comparing' }
+AOCExtent >> hash [ 
+	^ rect hash .
+]
+
 { #category : 'accessing' }
 AOCExtent >> height [
 	^ rect bottom - rect top + 1 .
@@ -92,6 +97,22 @@ AOCExtent >> initialize [
 	super initialize .
 	rect := nil .
 	^ self .
+]
+
+{ #category : 'comparing' }
+AOCExtent >> intersect: anExtent [
+	| minX minY maxX maxY |
+	(self isEmpty or: anExtent isEmpty) ifTrue: [^ self class  new] .
+	
+	minX := (self nw x max: anExtent nw x) .
+	maxX := (self se x min: anExtent se x) .
+	(maxX < minX) ifTrue: [^ self class new ] .
+	minY := (self nw y max: anExtent nw y) .
+	maxY := (self se y min: anExtent se y) .
+	(maxY < minY) ifTrue: [^ self class new] .
+
+	^ self class fromInts: (Array with: minX  with: minY with: maxX with: maxY) .
+
 ]
 
 { #category : 'testing' }
@@ -130,6 +151,12 @@ AOCExtent >> rect [
 ]
 
 { #category : 'accessing' }
+AOCExtent >> rect: aRect [
+	rect := aRect .
+	^ self .
+]
+
+{ #category : 'accessing' }
 AOCExtent >> se [
 	^ self max .
 ]
@@ -142,4 +169,18 @@ AOCExtent >> sw [
 { #category : 'accessing' }
 AOCExtent >> width [
 	^ rect right - rect left + 1 .
+]
+
+{ #category : 'accessing' }
+AOCExtent >> xInterval [
+	(self isEmpty)
+		ifTrue: [ ^ nil ]
+		ifFalse: [ ^ Interval from: rect left to: rect right . ] .
+]
+
+{ #category : 'accessing' }
+AOCExtent >> yInterval [
+	(self isEmpty)
+		ifTrue: [ ^ nil ]
+		ifFalse: [^ Interval from: rect top to: rect bottom . ] .
 ]
