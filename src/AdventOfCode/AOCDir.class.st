@@ -4,8 +4,8 @@ Enumeration of the 8 cardinal directions in two dimensions.
 Class {
 	#name : 'AOCDir',
 	#superclass : 'AOCEnum',
-	#category : 'AdventOfCode-2025-Util',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Util',
+	#package : 'AdventOfCode',
 	#tag : 'Util'
 }
 

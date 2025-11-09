@@ -8,8 +8,8 @@ Class {
 		'coord',
 		'dir'
 	],
-	#category : 'AdventOfCode-2025-Geometry',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Geometry',
+	#package : 'AdventOfCode',
 	#tag : 'Geometry'
 }
 

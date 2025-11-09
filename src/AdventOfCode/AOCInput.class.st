@@ -4,29 +4,30 @@ The input capabilities for loading puzzle data.
 Class {
 	#name : 'AOCInput',
 	#superclass : 'Object',
-	#category : 'AdventOfCode-2025-Util',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Util',
+	#package : 'AdventOfCode',
 	#tag : 'Util'
 }
 
 { #category : 'accessing' }
-AOCInput class >> fileNameForDay: anInteger isTest: aBoolean [
+AOCInput class >> fileNameForDay: dayInt year: yearInt isTest: aBoolean [
 
 	| paddedDay str |
 	paddedDay := String streamContents: [ :s |
-			             anInteger
+			             dayInt
 				             printOn: s
 				             base: 10
 				             length: 2
 				             padded: true ].
 	str := aBoolean ifTrue: ['test'] ifFalse: ['challenge'].
-	^ self path , '/day{1}_{2}.txt' format: { paddedDay. str }
+	^ (self path: yearInt) , '/day{1}_{2}.txt' format: { paddedDay. str }
 
 ]
 
 { #category : 'accessing' }
-AOCInput class >> path [
-	^ '/Users/sjb/Developer/Advent of Code/2025/AdventOfCode2025/Input' 
+AOCInput class >> path: aYear [
+	^ '/Users/sjb/Developer/Advent of Code/{1}/AdventOfCode{1}/Input'
+		format: (Array with: aYear) .
 ]
 
 { #category : 'reading' }

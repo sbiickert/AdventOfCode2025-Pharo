@@ -4,8 +4,8 @@ Enumeration class for clockwise and counterclockwise rotations.
 Class {
 	#name : 'AOCRotation',
 	#superclass : 'AOCEnum',
-	#category : 'AdventOfCode-2025-Util',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Util',
+	#package : 'AdventOfCode',
 	#tag : 'Util'
 }
 

@@ -1,8 +1,8 @@
 Class {
 	#name : 'AOCDirTest',
 	#superclass : 'TestCase',
-	#category : 'AdventOfCode-2025-Tests-Testing',
-	#package : 'AdventOfCode-2025-Tests',
+	#category : 'AdventOfCode-Tests-Testing',
+	#package : 'AdventOfCode-Tests',
 	#tag : 'Testing'
 }
 
@@ -30,5 +30,5 @@ AOCDirTest >> testFromString [
 	dir := AOCDir fromString: '<'.
 	self assert: dir equals: AOCDir west.
 	dir := AOCDir fromString: 'x'.
-	self assert: dir equals: AOCDir north.
+	self assert: dir equals: AOCDir none.
 ]

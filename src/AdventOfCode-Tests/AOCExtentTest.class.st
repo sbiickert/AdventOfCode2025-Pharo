@@ -7,8 +7,8 @@ Class {
 		'c3',
 		'c4'
 	],
-	#category : 'AdventOfCode-2025-Tests-Testing',
-	#package : 'AdventOfCode-2025-Tests',
+	#category : 'AdventOfCode-Tests-Testing',
+	#package : 'AdventOfCode-Tests',
 	#tag : 'Testing'
 }
 

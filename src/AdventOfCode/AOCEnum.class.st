@@ -7,8 +7,8 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : 'AdventOfCode-2025-Util',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Util',
+	#package : 'AdventOfCode',
 	#tag : 'Util'
 }
 

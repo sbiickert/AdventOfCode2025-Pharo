@@ -7,10 +7,12 @@ Class {
 	#instVars : [
 		'input',
 		'day',
+		'year',
+		'name',
 		'isTest'
 	],
-	#category : 'AdventOfCode-2025-Solution',
-	#package : 'AdventOfCode-2025',
+	#category : 'AdventOfCode-Solution',
+	#package : 'AdventOfCode',
 	#tag : 'Solution'
 }
 
@@ -25,10 +27,17 @@ AOCSolution >> day: anInteger [
 	^ self .
 ]
 
+{ #category : 'accessing' }
+AOCSolution >> description [
+	^ 'Day {1}: {2}' format: (Array with: day with: name) .
+]
+
 { #category : 'initialization' }
 AOCSolution >> initialize [ 
 	super initialize .
-	day := 0 .
+	"day := 0 ."     "leave nil to throw error if not set"
+	"year := 2025 ." "leave nil to throw error if not set"
+	name := '' .
 	isTest := true .
 	^ self .
 	
@@ -48,7 +57,7 @@ AOCSolution >> isTest: aBool [
 { #category : 'data' }
 AOCSolution >> loadGroupedInputForTest: aBool [
 	|filename|
-	filename := AOCInput fileNameForDay: day isTest: aBool .
+	filename := AOCInput fileNameForDay: day year: year isTest: aBool .
 	input := AOCInput readGroupedInputFrom: filename .
 	^ self .
 ]
@@ -56,7 +65,7 @@ AOCSolution >> loadGroupedInputForTest: aBool [
 { #category : 'data' }
 AOCSolution >> loadInputForTest: aBool [
 	|filename|
-	filename := AOCInput fileNameForDay: day isTest: aBool .
+	filename := AOCInput fileNameForDay: day year: year isTest: aBool .
 	input := AOCInput readInputFrom: filename .
 	^ self .
 ]
