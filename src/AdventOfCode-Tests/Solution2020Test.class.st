@@ -85,3 +85,22 @@ Solution2020Test >> testDay04 [
 
 	
 ]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay05 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_05 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the highest seat ID is {1}'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: the ID of my seat is {1}' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]
