@@ -17,6 +17,13 @@ ManifestAdventOfCode class >> ruleBadMessageRule2V1FalsePositive [
 ]
 
 { #category : 'code-critics' }
+ManifestAdventOfCode class >> ruleLongMethodsRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#Passport_2020_04 #string: #false)) #'2025-11-09T16:47:21.729203-07:00') )
+]
+
+{ #category : 'code-critics' }
 ManifestAdventOfCode class >> ruleReCollectionAtCollectionSizeRuleV1FalsePositive [
 
 	<ignoreForCoverage>

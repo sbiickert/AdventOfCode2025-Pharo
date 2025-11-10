@@ -56,12 +56,32 @@ Solution2020Test >> testDay03 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	self assert: results first isNotNil .
 	Transcript showCr: ('Part 1: you hit {1} trees'
 		format: (Array with: results first)) .
-	self assert: results last isNotNil .	
 	Transcript showCr: ('Part 2: the product of hit trees is {1}' 
 		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay04 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_04 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: {1} passports have all required fields'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: {1} passports are valid' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
 
 	
 ]
