@@ -8,9 +8,9 @@ Class {
 		'colorName',
 		'contents'
 	],
-	#category : 'AdventOfCode-Solution',
+	#category : 'AdventOfCode-SolutionHelper',
 	#package : 'AdventOfCode',
-	#tag : 'Solution'
+	#tag : 'SolutionHelper'
 }
 
 { #category : 'instance creation' }

@@ -12,8 +12,8 @@ Day2020_03 >> countTreeCollisionsWithTrajectory: trajectory onHill: hill [
 	toboggan := AOCCoord new point: 1 @ 1 .
 	count := 0 .
 	
-	[toboggan y <= hill extent max y] whileTrue: [
-		(toboggan x > hill extent max x) ifTrue: [ toboggan x: toboggan x - hill extent width ] .
+	[toboggan y <= hill extent bottom] whileTrue: [
+		(toboggan x > hill extent right) ifTrue: [ toboggan x: toboggan x - hill extent width ] .
 		((hill at: toboggan) = $#) ifTrue: [ count := count + 1 ] .
 		toboggan := toboggan + trajectory .
 	] .

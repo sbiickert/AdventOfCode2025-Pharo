@@ -14,9 +14,9 @@ Class {
 		'ecl',
 		'pid'
 	],
-	#category : 'AdventOfCode-Solution',
+	#category : 'AdventOfCode-SolutionHelper',
 	#package : 'AdventOfCode',
-	#tag : 'Solution'
+	#tag : 'SolutionHelper'
 }
 
 { #category : 'accessing' }

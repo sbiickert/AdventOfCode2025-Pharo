@@ -58,6 +58,11 @@ AOCExtent >> area [
 	^ self width * self height .
 ]
 
+{ #category : 'accessing' }
+AOCExtent >> bottom [
+	^ rect bottom .
+]
+
 { #category : 'comparing' }
 AOCExtent >> contains: aCoordOrExtent [
 	(aCoordOrExtent class == AOCCoord) ifTrue: [ ^ rect containsPoint: aCoordOrExtent point . ] .
@@ -126,6 +131,11 @@ AOCExtent >> isValid [
 ]
 
 { #category : 'accessing' }
+AOCExtent >> left [
+	^ rect left .
+]
+
+{ #category : 'accessing' }
 AOCExtent >> max [
 	^ AOCCoord new point: rect corner .
 ]
@@ -157,6 +167,11 @@ AOCExtent >> rect: aRect [
 ]
 
 { #category : 'accessing' }
+AOCExtent >> right [
+	^ rect right .
+]
+
+{ #category : 'accessing' }
 AOCExtent >> se [
 	^ self max .
 ]
@@ -164,6 +179,11 @@ AOCExtent >> se [
 { #category : 'accessing' }
 AOCExtent >> sw [
 	^ AOCCoord new point: ( rect origin x @ rect corner y ) .
+]
+
+{ #category : 'accessing' }
+AOCExtent >> top [
+	^ rect top .
 ]
 
 { #category : 'accessing' }
