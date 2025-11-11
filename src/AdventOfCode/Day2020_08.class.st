@@ -46,20 +46,7 @@ Day2020_08 >> resetDevice [
 ]
 
 { #category : 'execution' }
-Day2020_08 >> solve [
-	|p1 p2 instructions|
-	self loadInputForTest: self isTest .
-	
-	instructions := input collect: [ :each | each splitOn: ' ' ] .
-
-	p1 := self solvePartOne: instructions .
-	p2 := nil .
-	
-	^ Array with: p1 with: p2 .
-]
-
-{ #category : 'execution' }
-Day2020_08 >> solvePartOne: instructions [
+Day2020_08 >> runProgram: instructions [
 	|ptrHistory|
 	self resetDevice .
 	ptrHistory := Set new .
@@ -79,7 +66,41 @@ Day2020_08 >> solvePartOne: instructions [
 			ifTrue: [
 				self jmp: instruction last asInteger .
 			] .
+		(ptr > instructions size) ifTrue: [ ^ acc . ] .
 	] .
 	
+	^ acc .
+]
+
+{ #category : 'execution' }
+Day2020_08 >> solve [
+	|p1 p2 instructions|
+	self loadInputForTest: self isTest .
+	
+	instructions := input collect: [ :each | each splitOn: ' ' ] .
+
+	p1 := self runProgram: instructions .
+	p2 := self solvePartTwo: instructions .
+	
+	^ Array with: p1 with: p2 .
+]
+
+{ #category : 'execution' }
+Day2020_08 >> solvePartTwo: instructions [
+	1 to: instructions size do: [ :i |
+		|original instruction|
+		instruction := instructions at: i .
+		
+		original := instruction first .
+		(instruction first = 'nop')
+			ifTrue: [ instruction at: 1 put: 'jmp' ] 
+			ifFalse: [ (instruction first = 'jmp')
+				ifTrue: [ instruction at: 1  put: 'nop' ] ] .
+			
+		self runProgram: instructions .
+		instruction at: 1 put: original .
+		
+		(ptr > instructions size) ifTrue: [ ^ acc . ] .
+	] .
 	^ acc .
 ]

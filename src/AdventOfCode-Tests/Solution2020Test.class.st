@@ -147,13 +147,13 @@ Solution2020Test >> testDay07 [
 Solution2020Test >> testDay08 [
 	| day results |
 	Transcript showCr: 'Advent of Code 2020' .
-	day := Day2020_08 new isTest: true .
+	day := Day2020_08 new isTest: false .
 	Transcript showCr: day description .	
 	results := day solve .
 	
 	Transcript showCr: ('Part 1: the accumulator at the start of the infinite loop is {1}'
 		format: (Array with: results first)) .
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the accumulator on success is {1}' 
 		format: (Array with: results last)) .
 
 	self assert: results first isNotNil .
