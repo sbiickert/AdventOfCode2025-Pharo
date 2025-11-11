@@ -161,3 +161,22 @@ Solution2020Test >> testDay08 [
 
 	
 ]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay09 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_09 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the number not adding properly is {1}'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: the weakness is {1}' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]

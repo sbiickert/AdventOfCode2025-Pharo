@@ -24,6 +24,13 @@ ManifestAdventOfCode class >> ruleLongMethodsRuleV1FalsePositive [
 ]
 
 { #category : 'code-critics' }
+ManifestAdventOfCode class >> ruleModifiesCollectionRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#Day2020_09 #solvePartOne: #false)) #'2025-11-11T15:19:52.048196-07:00') )
+]
+
+{ #category : 'code-critics' }
 ManifestAdventOfCode class >> ruleReCollectionAtCollectionSizeRuleV1FalsePositive [
 
 	<ignoreForCoverage>
