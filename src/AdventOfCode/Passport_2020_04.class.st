@@ -1,3 +1,6 @@
+"
+Utility class representing a passport for AoC 2020 day 4. Includes validation code.
+"
 Class {
 	#name : 'Passport_2020_04',
 	#superclass : 'Object',

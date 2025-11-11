@@ -104,3 +104,22 @@ Solution2020Test >> testDay05 [
 
 	
 ]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay06 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_06 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the total yes answers for anyone is {1}'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: the total yes answers for everyone is {1}' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]
