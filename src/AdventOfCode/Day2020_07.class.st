@@ -28,14 +28,14 @@ Day2020_07 >> solve [
 	|p1 p2 bagsArray|
 	self loadGroupedInputForTest: self isTest .
 	
-	bagsArray := input first collect: [ :each | Bag_2020_07 fromString: each ] . 
+	bagsArray := input last collect: [ :each | Bag_2020_07 fromString: each ] . 
 	
 	bags := Dictionary new .
 	
 	bagsArray do: [ :bag | bags at: bag colorName put: bag ] .
 	
 	p1 := self solvePartOne .
-	p2 := nil .
+	p2 := self solvePartTwo .
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -43,11 +43,13 @@ Day2020_07 >> solve [
 { #category : 'execution' }
 Day2020_07 >> solvePartOne [
 	|bagsWithShinyGold|
-	bagsWithShinyGold := bags values select: [ :bag |
-		bag containsShinyGold: bags .
-		"|containsSG|
-		containsSG := bag containsShinyGold: bags .
-		containsSG ifTrue: [ Transcript showCr: bag colorName ] .
-		containsSG . "] .
+	bagsWithShinyGold := bags values select: [ :bag | bag containsShinyGold: bags ] .
 	^ bagsWithShinyGold size .
+]
+
+{ #category : 'execution' }
+Day2020_07 >> solvePartTwo [
+	|sg|
+	sg := bags at: 'shiny gold' .
+	^ sg contentsSize: bags .
 ]

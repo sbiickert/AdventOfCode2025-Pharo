@@ -31,6 +31,11 @@ Bag_2020_07 class >> fromString: aString [
 ]
 
 { #category : 'accessing' }
+Bag_2020_07 >> colorName [
+	^ colorName .
+]
+
+{ #category : 'accessing' }
 Bag_2020_07 >> colorName: aName [
 	colorName := aName .
 	^ self .
@@ -48,6 +53,18 @@ Bag_2020_07 >> containsShinyGold: bagsDict [
 Bag_2020_07 >> contents: aDict [
 	contents := aDict .
 	^ self .
+]
+
+{ #category : 'accessing' }
+Bag_2020_07 >> contentsSize: bagsDict [
+	|bagCount|
+	bagCount := 0 .
+	contents keysAndValuesDo: [ :cName :count |
+		|bag|
+		bag := bagsDict at: cName .
+		bagCount := bagCount + (count * (1 + (bag contentsSize: bagsDict))) .
+	] .
+	^ bagCount .
 ]
 
 { #category : 'accessing' }
