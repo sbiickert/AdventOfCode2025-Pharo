@@ -23,7 +23,7 @@ Day2020_09 >> solve [
 	numbers := input collect: [ :each | each asInteger ] .
 
 	p1 := self solvePartOne: numbers .
-	p2 := nil .
+	p2 := self solvePartTwo: numbers target: p1.
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -52,4 +52,20 @@ Day2020_09 >> solvePartOne: numbers [
 	] .
 	^ 0 .
 	
+]
+
+{ #category : 'execution' }
+Day2020_09 >> solvePartTwo: numbers target: weakness [
+	1 to: (numbers size -1) do: [ :i |
+		(i + 1) to: numbers size do: [ :j |
+			|contig|
+			contig := numbers copyFrom: i to: j .
+			(contig sum = weakness) ifTrue: [
+				contig := contig sorted . 
+				^ (contig first) + (contig last) .
+			] .
+		]
+	] .
+
+	^ 0 .
 ]
