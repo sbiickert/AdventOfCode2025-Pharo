@@ -57,12 +57,17 @@ Day2020_09 >> solvePartOne: numbers [
 { #category : 'execution' }
 Day2020_09 >> solvePartTwo: numbers target: weakness [
 	1 to: (numbers size -1) do: [ :i |
+		|total|
+		total := 0 .
 		(i + 1) to: numbers size do: [ :j |
-			|contig|
-			contig := numbers copyFrom: i to: j .
-			(contig sum = weakness) ifTrue: [
-				contig := contig sorted . 
-				^ (contig first) + (contig last) .
+			(total < weakness) ifTrue: [
+				|contig|
+				contig := numbers copyFrom: i to: j .
+				total := contig sum .
+				(total = weakness) ifTrue: [
+					contig := contig sorted . 
+					^ (contig first) + (contig last) .
+				] .
 			] .
 		]
 	] .
