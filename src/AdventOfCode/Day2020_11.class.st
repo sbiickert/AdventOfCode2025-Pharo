@@ -39,32 +39,7 @@ Day2020_11 >> isOccupiedSeatVisibleFrom: coord towards: offset atDistance: dista
 ]
 
 { #category : 'execution' }
-Day2020_11 >> iteratePartOne: seatMap [
-	|updatedMap changeCount|
-	changeCount := 0 .
-	updatedMap := AOCGrid new .
-	updatedMap default: $.; rule: AOCAdjacency queen .
-	
-	seatMap coords do: [ :c |
-		|occupiedSeats neighbors currentValue updatedValue|
-		currentValue := seatMap at: c .
-		neighbors := (seatMap neighborsAt: c) collect: [ :n | seatMap at: n ] .
-
-		occupiedSeats := 0 .
-		neighbors do: [ :value |
-			(value = $#) ifTrue: [ occupiedSeats := occupiedSeats + 1 ] ].
-		
-		updatedValue := self updatedSeatState: (currentValue = $#) numOccupied: occupiedSeats .
-		
-		updatedMap at: c put: updatedValue .
-		(currentValue ~= updatedValue) ifTrue: [ changeCount := changeCount + 1 ].
-	] .
-
-	^ {changeCount. updatedMap} .
-]
-
-{ #category : 'execution' }
-Day2020_11 >> iteratePartTwo: seatMap [
+Day2020_11 >> iteratePart: seatMap allowedDistance: dist peopleTolerance: tolerance [
 	|updatedMap changeCount offsets|
 
 	changeCount := 0 .
@@ -77,11 +52,11 @@ Day2020_11 >> iteratePartTwo: seatMap [
 
 		occupiedSeats := 0 .
 		offsets do: [ :off |
-			(self isOccupiedSeatVisibleFrom: c towards: off atDistance: 1000 inMap: seatMap)
+			(self isOccupiedSeatVisibleFrom: c towards: off atDistance: dist inMap: seatMap)
 				ifTrue: [ occupiedSeats := occupiedSeats + 1 ] .
 		].
 
-		updatedValue := self updatedSeatState: (currentValue = $#) numVisible: occupiedSeats .
+		updatedValue := self updatedSeatState: (currentValue = $#) numVisible: occupiedSeats allowedVisible: tolerance .
 		
 		updatedMap at: c put: updatedValue .
 		(currentValue ~= updatedValue) ifTrue: [ changeCount := changeCount + 1 ].
@@ -110,12 +85,12 @@ Day2020_11 >> solvePart: part seatMap: seatMap [
 	
 	currentMap := seatMap .
 	changeCount := -1 .
-	[changeCount ~= 0]
-		whileTrue: [ 
+	[changeCount = 0]
+		whileFalse: [ 
 			iterateResult := 
 				(part = 1) 
-					ifTrue: [self iteratePartOne: currentMap]
-					ifFalse: [self iteratePartTwo: currentMap ] .
+					ifTrue: [self iteratePart: currentMap allowedDistance: 1 peopleTolerance: 4]
+					ifFalse: [self iteratePart: currentMap allowedDistance: 1000 peopleTolerance: 5] .
 			changeCount := iterateResult first .
 			currentMap := iterateResult last .
 		] .
@@ -124,22 +99,10 @@ Day2020_11 >> solvePart: part seatMap: seatMap [
 ]
 
 { #category : 'execution' }
-Day2020_11 >> updatedSeatState: isOccupied numOccupied: o [
+Day2020_11 >> updatedSeatState: isOccupied numVisible: v allowedVisible: allowed [
 	isOccupied
 		ifTrue: [ 
-			(o >= 4) ifTrue: [ ^ $L ] ifFalse: [ ^ $# ] .
-		]
-		ifFalse: [ 
-			(o = 0) ifTrue: [ ^ $# ] ifFalse: [ ^ $L ] .
-		] .
-
-]
-
-{ #category : 'execution' }
-Day2020_11 >> updatedSeatState: isOccupied numVisible: v [
-	isOccupied
-		ifTrue: [ 
-			(v >= 5) ifTrue: [ ^ $L ] ifFalse: [ ^ $# ] .
+			(v >= allowed) ifTrue: [ ^ $L ] ifFalse: [ ^ $# ] .
 		]
 		ifFalse: [ 
 			(v = 0) ifTrue: [ ^ $# ] ifFalse: [ ^ $L ] .
