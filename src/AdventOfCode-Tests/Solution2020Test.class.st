@@ -189,9 +189,28 @@ Solution2020Test >> testDay10 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}'
+	Transcript showCr: ('Part 1: the single steps times the triple steps is {1}'
 		format: (Array with: results first)) .
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the number of unique ways the adapters could be arranged is {1}' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay11 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_11 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the steady-state number of occupied seats is {1}'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: the steady-state number of occupied seats is {1}' 
 		format: (Array with: results last)) .
 
 	self assert: results first isNotNil .

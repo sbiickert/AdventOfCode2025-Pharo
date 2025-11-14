@@ -65,7 +65,10 @@ AOCExtent >> bottom [
 
 { #category : 'comparing' }
 AOCExtent >> contains: aCoordOrExtent [
-	(aCoordOrExtent class == AOCCoord) ifTrue: [ ^ rect containsPoint: aCoordOrExtent point . ] .
+	(aCoordOrExtent class == AOCCoord) ifTrue: [
+		^ (aCoordOrExtent x between: self left and: self right) 
+			and: [ aCoordOrExtent y between: self top and: self bottom ] .
+	] .
 	(aCoordOrExtent class == self class) ifTrue: [ ^ rect containsRect: aCoordOrExtent rect . ] .	
 	^ false .
 ]

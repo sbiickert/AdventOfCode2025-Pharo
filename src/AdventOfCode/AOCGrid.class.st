@@ -23,8 +23,10 @@ AOCGrid class >> newWith: lines [
 	lines doWithIndex: [ :line :row |
 		line doWithIndex: [ :char :col |
 			|coord|
-			coord := AOCCoord new point: col @ row .
-			g at: coord put: char
+			(char = g default) ifFalse: [ 
+				coord := AOCCoord new point: col @ row .
+				g at: coord put: char
+			] .
 		] .
 	 ] .
 	^ g .
@@ -41,7 +43,7 @@ AOCGrid >> asString [
 		extent xInterval do: [ :col |
 			| coord |
 			coord := AOCCoord new point: col @ row .
-			rowValues add: self at: coord .
+			rowValues add: (self at: coord) .
 		 ] .
 		str := str , Character cr , rowValues joinUsing: ' ' .
 	 ] .
@@ -83,6 +85,11 @@ AOCGrid >> default: aChar [
 
 { #category : 'accessing' }
 AOCGrid >> extent [
+	^ extent .
+]
+
+{ #category : 'accessing' }
+AOCGrid >> extentCopy [
 	^ extent deepCopy .
 ]
 
@@ -146,6 +153,13 @@ AOCGrid >> neighborsAt: aCoord [
 	^ aCoord adjacentCoordsForRule: rule .
 ]
 
+{ #category : 'accessing' }
+AOCGrid >> neighborsAt: aCoord with: aValue [
+	|neighbors|
+	neighbors := self neighborsAt: aCoord .
+	^ neighbors select: [ :n | (self at: n) = aValue ] .
+]
+
 { #category : 'printing' }
 AOCGrid >> printOn: aStream [
 
@@ -161,6 +175,13 @@ AOCGrid >> printOn: aStream [
 				nextPut: Character cr;
 				nextPutAll: (rowValues joinUsing: ' ') ].
 	^ self
+]
+
+{ #category : 'removing' }
+AOCGrid >> removeAll [
+	data removeAll .
+	extent := AOCExtent new .
+	^ self . 
 ]
 
 { #category : 'accessing' }
