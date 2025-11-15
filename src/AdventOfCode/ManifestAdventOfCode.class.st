@@ -20,7 +20,7 @@ ManifestAdventOfCode class >> ruleBadMessageRule2V1FalsePositive [
 ManifestAdventOfCode class >> ruleLongMethodsRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#Passport_2020_04 #string: #false)) #'2025-11-09T16:47:21.729203-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#Passport_2020_04 #string: #false)) #'2025-11-09T16:47:21.729203-07:00') #(#(#RGMethodDefinition #(#Day2020_12 #solvePartTwo: #false)) #'2025-11-14T21:18:56.029036-07:00') )
 ]
 
 { #category : 'code-critics' }

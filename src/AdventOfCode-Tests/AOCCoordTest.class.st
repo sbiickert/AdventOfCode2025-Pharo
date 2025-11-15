@@ -130,3 +130,28 @@ AOCCoordTest >> testOffset [
 	
 	
 ]
+
+{ #category : 'tests' }
+AOCCoordTest >> testRotateAroundOrigin [
+	|c1|
+	
+	c1 := (AOCCoord new point: 3 @ 1) .
+	self assert: c1 offsetDir equals: AOCDir se .
+	c1 rotateAroundOrigin: AOCRotation cw .
+	self assert: c1 offsetDir equals: AOCDir sw .
+	c1 rotateAroundOrigin: AOCRotation cw .
+	self assert: c1 offsetDir equals: AOCDir nw .
+	c1 rotateAroundOrigin: AOCRotation cw .
+	self assert: c1 offsetDir equals: AOCDir ne .
+	self assert: c1 equals: (AOCCoord new point: 1 @ -3) .
+	
+	c1 rotateAroundOrigin: AOCRotation ccw .
+	self assert: c1 offsetDir equals: AOCDir nw .
+	c1 rotateAroundOrigin: AOCRotation ccw .
+	self assert: c1 offsetDir equals: AOCDir sw .
+	c1 rotateAroundOrigin: AOCRotation ccw .
+	self assert: c1 offsetDir equals: AOCDir se .
+	self assert: c1 equals: (AOCCoord new point: 3 @ 1) .
+	
+	
+]

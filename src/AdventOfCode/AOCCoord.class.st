@@ -119,6 +119,19 @@ AOCCoord >> offset: aDir distance: dist [
 	^ self + off . 
 ]
 
+{ #category : 'comparing' }
+AOCCoord >> offsetDir [
+	(self = self class origin) ifTrue: [ ^ AOCDir none ] .
+	(self x > 0 and: [self y = 0]) ifTrue: [ ^ AOCDir east ] .
+	(self x < 0 and: [self y = 0]) ifTrue: [ ^ AOCDir west ] .
+	(self x = 0 and: [self y > 0]) ifTrue: [ ^ AOCDir south ] .
+	(self x = 0 and: [self y < 0]) ifTrue: [ ^ AOCDir north ] .
+	(self x > 0 and: [self y > 0]) ifTrue: [ ^ AOCDir se ] .
+	(self x > 0 and: [self y < 0]) ifTrue: [ ^ AOCDir ne ] .
+	(self x < 0 and: [self y > 0]) ifTrue: [ ^ AOCDir sw ] .
+	(self x < 0 and: [self y < 0]) ifTrue: [ ^ AOCDir nw ] .
+]
+
 { #category : 'accessing' }
 AOCCoord >> point [
 	^ pt.
@@ -128,6 +141,23 @@ AOCCoord >> point [
 AOCCoord >> point: aPoint [
 	pt := aPoint.
 	^ self.
+]
+
+{ #category : 'arithmetic' }
+AOCCoord >> rotateAroundOrigin: rotationDir [
+	|offsetDir pt1 cases|
+	offsetDir := self offsetDir .
+	pt1 := self point .
+	cases := Dictionary new .
+	(rotationDir = AOCRotation clockwise)
+		ifTrue: [
+			self point: (-1 * (pt y)) @ (pt x) .
+		]
+		ifFalse: [
+			self point: (pt y) @ (-1 * (pt x)) .
+		] .
+			
+	^ self .
 ]
 
 { #category : 'accessing - structure variables' }

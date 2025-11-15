@@ -59,8 +59,8 @@ AOCAdjacency class >> rookDirections [
 
 { #category : 'translation' }
 AOCAdjacency >> directions [
-	(value = self class rook)   ifTrue: [ ^ self class rookDirections ] .
-	(value = self class bishop) ifTrue: [ ^ self class bishopDirections ] .
+	(value = #rook)   ifTrue: [ ^ self class rookDirections ] .
+	(value = #bishop) ifTrue: [ ^ self class bishopDirections ] .
 	^ self class queenDirections
 
 
