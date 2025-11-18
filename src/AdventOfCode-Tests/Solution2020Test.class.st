@@ -237,3 +237,22 @@ Solution2020Test >> testDay12 [
 
 	
 ]
+
+{ #category : 'tests' }
+Solution2020Test >> testDay13 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2020' .
+	day := Day2020_13 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the earliest bus ID times the wait is {1}'
+		format: (Array with: results first)) .
+	Transcript showCr: ('Part 2: the earliest timestamp that lines up is {1}' 
+		format: (Array with: results last)) .
+
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+
+	
+]
