@@ -20,17 +20,18 @@ Day2020_06 >> initialize [
 
 { #category : 'execution' }
 Day2020_06 >> solve [
-	|p1 p2 |
-	self loadGroupedInputForTest: self isTest .
-	
-	p1 := self solvePartOne .
-	p2 := self solvePartTwo .
-	
-	^ Array with: p1 with: p2 .
+
+	| p1 p2 |
+	self loadGroupedInputForTest: self isTest.
+
+	p1 := self solvePartOne: nil.
+	p2 := self solvePartTwo: nil.
+
+	^ Array with: p1 with: p2
 ]
 
 { #category : 'execution' }
-Day2020_06 >> solvePartOne [ 
+Day2020_06 >> solvePartOne: anObject [ 
 	|totals|
 	totals := input collect: [ :group |
 		|charSet|
@@ -41,7 +42,7 @@ Day2020_06 >> solvePartOne [
 ]
 
 { #category : 'execution' }
-Day2020_06 >> solvePartTwo [
+Day2020_06 >> solvePartTwo: anObject [
 	|totals|
 	totals := input collect: [ :group |
 		|firstSet charSet|

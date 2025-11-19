@@ -17,6 +17,13 @@ ManifestAdventOfCode class >> ruleBadMessageRule2V1FalsePositive [
 ]
 
 { #category : 'code-critics' }
+ManifestAdventOfCode class >> ruleCollectionProtocolRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#'Mask_2020_14 class' #resolveFloatingDefinition: #true)) #'2025-11-18T16:33:08.291093-07:00') )
+]
+
+{ #category : 'code-critics' }
 ManifestAdventOfCode class >> ruleLongMethodsRuleV1FalsePositive [
 
 	<ignoreForCoverage>
