@@ -32,7 +32,7 @@ Day2025_01 >> solve [
 	].
 
 	p1 := self solvePartOne: numbers .
-	p2 := nil .
+	p2 := self solvePartTwo: numbers .
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -45,6 +45,22 @@ Day2025_01 >> solvePartOne: numbers [
 	numbers do: [ :num |
 		value := (value + num) % 100 .
 		(value = 0) ifTrue: [ zeroCount := zeroCount + 1 ] .
+	] .
+	^ zeroCount .
+]
+
+{ #category : 'execution' }
+Day2025_01 >> solvePartTwo: numbers [
+	|value zeroCount|
+	value := 50 .
+	zeroCount := 0 .
+	numbers do: [ :num |
+		|increment|
+		increment := num / (num abs) .
+		1 to: (num abs) do: [ :i |
+			value := (value + increment) % 100 .
+			(value = 0) ifTrue: [ zeroCount := zeroCount + 1 ] .	
+		] .
 	] .
 	^ zeroCount .
 ]
