@@ -9,14 +9,6 @@ Class {
 	#tag : 'Solution'
 }
 
-{ #category : 'validation' }
-Day2025_02 >> allStringsEqual: stringCollection [
-	1 to: stringCollection size do: [ :i |
-		(stringCollection first = (stringCollection at: i)) ifFalse: [ ^ false ] .
-	] .
-	^ true .
-]
-
 { #category : 'manipulating' }
 Day2025_02 >> breakString: str into: count [
 	|size parts|
@@ -51,7 +43,9 @@ Day2025_02 >> idIsInvalidPartTwo: idInteger [
 	2 to: idStr size do: [ :count |
 		parts := self breakString: idStr into: count .
 		(parts size > 1) ifTrue: [
-			(self allStringsEqual: parts) ifTrue: [ ^ true ] .			
+			|partSet|
+			partSet := Set newFrom: parts .
+			(partSet size = 1) ifTrue: [ ^ true ] .			
 		] .
 	] .
 
