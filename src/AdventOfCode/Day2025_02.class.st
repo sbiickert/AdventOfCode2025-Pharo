@@ -9,6 +9,30 @@ Class {
 	#tag : 'Solution'
 }
 
+{ #category : 'validation' }
+Day2025_02 >> idIsInvalidPartOne: idInteger [
+	|parts|
+	parts := self breakString: idInteger asString into: 2 .
+	^ (parts size = 2) and: [parts first = parts last] .
+
+]
+
+{ #category : 'validation' }
+Day2025_02 >> idIsInvalidPartTwo: idInteger [
+	|parts idStr|
+	idStr := idInteger asString .
+	
+	2 to: idStr size do: [ :count |
+		parts := self breakString: idStr into: count .
+		(parts size > 1) ifTrue: [
+			(self allStringsEqual: parts) ifTrue: [ ^ true ] .			
+		] .
+	] .
+
+	^ false .
+
+]
+
 { #category : 'initialization' }
 Day2025_02 >> initialize [ 
 	super initialize .
@@ -38,7 +62,7 @@ Day2025_02 >> solve [
 	ranges := self parseRangesFromInput .
 	
 	p1 := self solvePartOne: ranges .
-	p2 := nil .
+	p2 := self solvePartTwo: ranges .
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -50,18 +74,22 @@ Day2025_02 >> solvePartOne: ranges [
 	
 	ranges do: [ :range | 
 		range first to: range last do: [ :id | 
-			|strID size firstPart secondPart mid|
-			strID := id asString .
-			size := strID size .
-			(size isDivisibleBy: 2) ifTrue: [
-				mid := size / 2 .
-				firstPart := strID copyFrom: 1 to: mid .
-				secondPart := strID copyFrom: (mid + 1) to: size .
-				(firstPart = secondPart) ifTrue: [
-					"Transcript showCr: id ."
-					sum := sum + id .
-				] .
-			] .
+			(self idIsInvalidPartOne: id) ifTrue: [ sum := sum + id ] .
+		] . 
+	] .
+	
+	^ sum .
+	
+]
+
+{ #category : 'execution' }
+Day2025_02 >> solvePartTwo: ranges [
+	|sum|
+	sum := 0 .
+	
+	ranges do: [ :range | 
+		range first to: range last do: [ :id | 
+			(self idIsInvalidPartTwo: id) ifTrue: [ sum := sum + id ] .
 		] . 
 	] .
 	
