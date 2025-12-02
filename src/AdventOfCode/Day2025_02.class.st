@@ -10,6 +10,32 @@ Class {
 }
 
 { #category : 'validation' }
+Day2025_02 >> allStringsEqual: stringCollection [
+	1 to: stringCollection size do: [ :i |
+		(stringCollection first = (stringCollection at: i)) ifFalse: [ ^ false ] .
+	] .
+	^ true .
+]
+
+{ #category : 'manipulating' }
+Day2025_02 >> breakString: str into: count [
+	|size parts|
+	size := str size .
+	parts := OrderedCollection new .
+	(size isDivisibleBy: count) ifTrue: [
+		|partSize|
+		partSize := size / count .
+		0 to: (count-1) do: [ :i |
+			|start end|
+			start := i * partSize + 1 .
+			end := (i + 1) * partSize .
+			parts add: (str copyFrom: start to: end)
+		] .
+	] .
+	^ parts .
+]
+
+{ #category : 'validation' }
 Day2025_02 >> idIsInvalidPartOne: idInteger [
 	|parts|
 	parts := self breakString: idInteger asString into: 2 .
