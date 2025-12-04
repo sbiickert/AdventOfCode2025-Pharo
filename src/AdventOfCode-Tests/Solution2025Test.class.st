@@ -14,10 +14,10 @@ Solution2025Test >> testDay01 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the password (count ending on zero) is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the password (count passing zero) is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
@@ -33,10 +33,10 @@ Solution2025Test >> testDay02 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the sum of invalid IDs is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the sum of invalid IDs is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
@@ -52,10 +52,10 @@ Solution2025Test >> testDay03 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the sum of max joltage with 2 batteries is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the sum of max joltage with 12 batteries is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
@@ -71,10 +71,10 @@ Solution2025Test >> testDay04 [
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the number of accessible rolls is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the number of rolls that can be removed is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
