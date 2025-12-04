@@ -20,7 +20,7 @@ ManifestAdventOfCode class >> ruleBadMessageRule2V1FalsePositive [
 ManifestAdventOfCode class >> ruleCollectionProtocolRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'Mask_2020_14 class' #resolveFloatingDefinition: #true)) #'2025-11-18T16:33:08.291093-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#'Mask_2020_14 class' #resolveFloatingDefinition: #true)) #'2025-11-18T16:33:08.291093-07:00') #(#(#RGMethodDefinition #(#Day2025_03 #largestJoltageForBankPartTwo: #false)) #'2025-12-03T10:58:56.838044-07:00') )
 ]
 
 { #category : 'code-critics' }
