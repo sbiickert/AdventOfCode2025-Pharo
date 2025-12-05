@@ -32,7 +32,7 @@ Day2025_05 >> solve [
 	ranges := input first collect: [ :line | self parseRange: line ] .
 	
 	p1 := self solvePartOne: ranges ids: ids .
-	p2 := self solvePartTwo .
+	p2 := self solvePartTwo: ranges .
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -56,6 +56,35 @@ Day2025_05 >> solvePartOne: ranges ids: ids [
 ]
 
 { #category : 'execution' }
-Day2025_05 >> solvePartTwo [
-	^ nil .
+Day2025_05 >> solvePartTwo: ranges [
+	|modified isChanged|
+	
+	modified := ranges collect: [ :r | AOCExtent1D newWithMin: (r first) max: (r last) ] .
+	isChanged := true .
+		
+	[ isChanged ] whileTrue: [ 
+		isChanged := false .
+		
+		1 to: modified size -1 do: [ :i |
+			i + 1 to: modified size do: [ :j |
+				isChanged ifFalse: [
+					
+					((modified at: i) overlaps: (modified at: j)) ifTrue: [ 
+						|unionResults|
+						unionResults:= (modified at: i) unionWith: (modified at: j) .
+						modified removeAt: j .
+						modified removeAt: i .
+						modified addAll: unionResults .
+						isChanged := true .
+					] .
+				].
+			].
+		].
+
+		"Transcript showCr: ('({1})' format: (Array with: ((modified collect: [:e | e toString] ) joinUsing: ', '))) .
+		self halt."
+	] .
+
+	^ (modified collect: [ :ext | ext size ]) sum .
+
 ]

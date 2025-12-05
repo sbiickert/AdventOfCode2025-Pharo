@@ -93,7 +93,7 @@ Solution2025Test >> testDay05 [
 	Transcript showCr: ('Part 1: the number of fresh ingredients is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the number of fresh IDs is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .

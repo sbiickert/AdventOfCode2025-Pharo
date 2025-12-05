@@ -194,7 +194,7 @@ AOCGrid >> removeAt: aCoord resetExtent: aBool [
 	(data includesKey: aCoord)
 		ifTrue: [
 			data removeKey: aCoord .
-			aBool ifTrue: [ extent := AOCExtent fromCoords: self coords ] .
+			aBool ifTrue: [ extent := AOCExtent newWithCoords: self coords ] .
 		] .
 	^ self .
 ]

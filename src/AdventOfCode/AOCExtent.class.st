@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-AOCExtent class >> fromCoords: aCoordList [
+AOCExtent class >> newWithCoords: aCoordList [
 	| e |
 	e := self new .
 	aCoordList do: [ :c | e expandToFit: c ].
@@ -21,19 +21,19 @@ AOCExtent class >> fromCoords: aCoordList [
 ]
 
 { #category : 'instance creation' }
-AOCExtent class >> fromInts: anIntArray [
-	^ self fromX1: (anIntArray at: 1) 
+AOCExtent class >> newWithInts: anIntArray [
+	^ self newWithX1: (anIntArray at: 1) 
 				  y1: (anIntArray at: 2) 
 				  x2: (anIntArray at: 3) 
 				  y2: (anIntArray at: 4)
 ]
 
 { #category : 'instance creation' }
-AOCExtent class >> fromX1: x1 y1: y1 x2: x2 y2: y2 [
+AOCExtent class >> newWithX1: x1 y1: y1 x2: x2 y2: y2 [
 	|c1 c2|
 	c1 := AOCCoord new point: x1 @ y1 .
 	c2 := AOCCoord new point: x2 @ y2 .
-	^ self fromCoords: (Array with: c1 with: c2) .
+	^ self newWithCoords: (Array with: c1 with: c2) .
 	
 ]
 
@@ -119,7 +119,7 @@ AOCExtent >> intersect: anExtent [
 	maxY := (self se y min: anExtent se y) .
 	(maxY < minY) ifTrue: [^ self class new] .
 
-	^ self class fromInts: (Array with: minX  with: minY with: maxX with: maxY) .
+	^ self class newWithInts: (Array with: minX  with: minY with: maxX with: maxY) .
 
 ]
 

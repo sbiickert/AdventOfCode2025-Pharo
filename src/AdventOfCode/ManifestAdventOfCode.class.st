@@ -27,7 +27,7 @@ ManifestAdventOfCode class >> ruleCollectionProtocolRuleV1FalsePositive [
 ManifestAdventOfCode class >> ruleLongMethodsRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#Passport_2020_04 #string: #false)) #'2025-11-09T16:47:21.729203-07:00') #(#(#RGMethodDefinition #(#Day2020_12 #solvePartTwo: #false)) #'2025-11-14T21:18:56.029036-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#Passport_2020_04 #string: #false)) #'2025-11-09T16:47:21.729203-07:00') #(#(#RGMethodDefinition #(#Day2020_12 #solvePartTwo: #false)) #'2025-11-14T21:18:56.029036-07:00') #(#(#RGMethodDefinition #(#AOCExtent1D #unionWith: #false)) #'2025-12-05T13:50:09.852005-07:00') )
 ]
 
 { #category : 'code-critics' }
@@ -41,7 +41,7 @@ ManifestAdventOfCode class >> ruleModifiesCollectionRuleV1FalsePositive [
 ManifestAdventOfCode class >> ruleReCollectionAtCollectionSizeRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'AOCExtent class' #fromInts: #true)) #'2025-11-07T08:25:16.474143-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#'AOCExtent class' #newWithInts: #true)) #'2025-11-07T08:25:16.474143-07:00') )
 ]
 
 { #category : 'code-critics' }
