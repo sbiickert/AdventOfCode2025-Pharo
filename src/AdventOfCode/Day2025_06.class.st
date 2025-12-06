@@ -9,6 +9,30 @@ Class {
 	#tag : 'Solution'
 }
 
+{ #category : 'execution' }
+Day2025_06 >> findEquationExtents: grid [
+	|opXColl extents y|
+	opXColl := OrderedCollection new .
+	
+	y := grid extent bottom .
+	grid extent left to: grid extent right do: [ :x |
+		((grid at: (AOCCoord new point: x @ y)) ~= Character space) ifTrue: [ opXColl add: x ] .
+	] . 
+	opXColl add: (grid extent right) + 2 . "Dealing with the last extent"
+
+	extents := OrderedCollection new .
+	1 to: (opXColl size - 1) do: [ :i |
+		|min max x1 x2|
+		x1 := opXColl at: i .
+		x2 := (opXColl at: i+1) - 2 .
+		min := AOCCoord new point: x1 @ 1 .
+		max := AOCCoord new point: x2 @ y .
+		extents add: (AOCExtent newWithCoords: (Array with: min with: max)) .
+	] .
+
+	^ extents . 
+]
+
 { #category : 'initialization' }
 Day2025_06 >> initialize [ 
 	super initialize .
@@ -19,7 +43,7 @@ Day2025_06 >> initialize [
 ]
 
 { #category : 'parsing' }
-Day2025_06 >> parseCephalopodMath [
+Day2025_06 >> parseCephalopodMath1 [
 	|lines equations eq|
 	lines := input collect: [ :line |
 		|singlespaced|
@@ -43,21 +67,45 @@ Day2025_06 >> parseCephalopodMath [
 	^ equations .
 ]
 
+{ #category : 'parsing' }
+Day2025_06 >> parseCephalopodMath2 [
+
+	| grid extents equations |
+	grid := AOCGrid newWith: input.
+	extents := self findEquationExtents: grid.
+
+	equations := OrderedCollection new.
+	equations addAll: (extents collect: [ :ex |
+				 | op eq |
+				 eq := OrderedCollection new.
+				 op := grid at: ex sw.
+				 ex left to: ex right do: [ :x |
+						 | str |
+						 str := ''.
+						 1 to: ex bottom - 1 do: [ :y |
+						 str := str , (grid at: (AOCCoord new point: x @ y)) asString ].
+						 eq add: str asInteger ].
+				 eq add: op asString.
+				 eq ]).
+
+	^ equations
+]
+
 { #category : 'execution' }
 Day2025_06 >> solve [
 	|p1 p2 equations|
 	self loadInputForTest: self isTest .
 	
-	equations := self parseCephalopodMath .
-	
-	p1 := self solvePartOne: equations .
-	p2 := nil .
+	equations := self parseCephalopodMath1 .
+	p1 := self solvePart: equations .
+	equations := self parseCephalopodMath2 .
+	p2 := self solvePart: equations .
 	
 	^ Array with: p1 with: p2 .
 ]
 
 { #category : 'execution' }
-Day2025_06 >> solvePartOne: equations [
+Day2025_06 >> solvePart: equations [
 	|total|
 	total := equations inject: 0 into: [ :sum :eq |
 		| eqCopy op startValue interim |
@@ -71,7 +119,6 @@ Day2025_06 >> solvePartOne: equations [
 			  op = '+'
 				  ifTrue: [ acc + each ]
 				  ifFalse: [ acc * each ] ] .
-		"self halt ."
 		sum + interim .
 	] .
 

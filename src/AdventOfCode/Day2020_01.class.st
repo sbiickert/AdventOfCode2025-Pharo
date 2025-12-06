@@ -31,7 +31,7 @@ Day2020_01 >> solve [
 ]
 
 { #category : 'execution' }
-Day2020_01 >> solvePart: combinationSize [
+Day2020_01 >> solvePartOne: combinationSize [
 	|product ints|
 	ints := input collect: [ :each | each asInteger ] .
 	product := 0 .
