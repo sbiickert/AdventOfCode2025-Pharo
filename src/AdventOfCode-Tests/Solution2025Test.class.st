@@ -124,14 +124,14 @@ Solution2025Test >> testDay06 [
 Solution2025Test >> testDay07 [
 	| day results |
 	Transcript showCr: 'Advent of Code 2025' .
-	day := Day2025_07 new isTest: true .
+	day := Day2025_07 new isTest: false .
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the beam is split {1} times' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: there are {1} additional universes' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
