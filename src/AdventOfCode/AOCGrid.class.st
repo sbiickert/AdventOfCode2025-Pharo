@@ -69,7 +69,9 @@ AOCGrid >> coords [
 
 { #category : 'accessing' }
 AOCGrid >> coordsWithValue: aValue [
-	^ data values select: [ :each | each = aValue ] .
+	^ data associations
+		select: [ :each | each value = aValue ]
+		thenCollect: [ :each | each key ] .
 ]
 
 { #category : 'accessing' }
