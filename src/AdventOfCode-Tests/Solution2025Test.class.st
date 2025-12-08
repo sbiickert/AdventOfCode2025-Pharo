@@ -150,7 +150,7 @@ Solution2025Test >> testDay08 [
 	Transcript showCr: ('Part 1: the product of the largest 3 circuits is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the product of the x coords of the last 2 junction boxes is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
