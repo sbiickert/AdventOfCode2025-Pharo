@@ -14,30 +14,34 @@ Class {
 
 { #category : 'execution' }
 Day2025_08 >> connectJBoxesUntil: limit [
-	|distances jbSets maxLightStrands|
-	jbSets := OrderedCollection new .
-	jbSets addAll: (jBoxes collect: [ :jb | Set new add: jb; yourself ]) .
+	|distances circuits maxLightStrands|
 	
-	maxLightStrands := (limit > 0) ifTrue: [ limit ] ifFalse: [ 1000000000 ] .
+	"Circuits start as single junction boxes"
+	circuits := OrderedCollection new .
+	circuits addAll: (jBoxes collect: [ :jb | Set new add: jb; yourself ]) .
+	
 	distances := self getJBoxPairDistances .
+		
+	maxLightStrands := (limit > 0) ifTrue: [ limit ] ifFalse: [ distances size ] .
+
 	1 to: maxLightStrands do: [ :i |
 		|jbDist jb1 jb2 i1 i2|
 		jbDist := distances at: i .
-		jb1 := jbDist first .
+		jb1 := jbDist at: 1 .
 		jb2 := jbDist at: 2 .
-		"Transcript showCr: ('Joining {1} and {2}' format: (Array with: jb1 asString with: jb2 asString)) ."
-		i1 := self findIndexOfSet: jbSets withJB: jb1 .
-		i2 := self findIndexOfSet: jbSets withJB: jb2 .
-		(i1 = 0 and: i2 = 0) ifTrue: [ jbSets add: (Array with: jb1 with: jb2) asSet . "Transcript showCr: 'New circuit'" ] .
-		(i1 = 0 and: i2 > 0) ifTrue: [ (jbSets at: i2) add: jb1 . "Transcript showCr: 'Add 1st to circuit'" ] .
-		(i1 > 0 and: i2 = 0) ifTrue: [ (jbSets at: i1) add: jb2 . "Transcript showCr: 'Add 2nd to circuit'" ] .
-		(i1 > 0 and: [i2 > 0 and: [ i1 ~= i2 ]])
-			ifTrue: [ jbSets at: i1 put: ((jbSets at: i1) union: (jbSets at: i2)). jbSets removeAt: i2 . "Transcript showCr: 'Union circuits'" ] .
+
+		i1 := self findIndexOfSet: circuits withJB: jb1 .
+		i2 := self findIndexOfSet: circuits withJB: jb2 .
+		( i1 ~= i2 )
+			ifTrue: [ circuits at: i1 put: ((circuits at: i1) union: (circuits at: i2)). circuits removeAt: i2 ] .
 			
-		(limit <= 0 and: [ jbSets size = 1 ]) ifTrue: [ ^ Set new add: jb1; add: jb2; yourself ] .
+		(limit <= 0 and: [ circuits size = 1 ]) ifTrue: [
+			"Only return the last two joined junction boxes. All that's needed for solvePartTwo."
+			^ Set new add: jb1; add: jb2; yourself ] .
 	] .
 
-	^ jbSets .
+	"Return all the circuits"
+	^ circuits .
 ]
 
 { #category : 'execution' }
@@ -51,7 +55,7 @@ Day2025_08 >> findIndexOfSet: setsColl withJB: jbox [
 { #category : 'execution' }
 Day2025_08 >> getJBoxPairDistances [
 
-	| result resultSorted |
+	| result |
 	result := OrderedCollection new.
 	result addAll: ((jBoxes combinations: 2) collect: [ :combo |
 				 Array
@@ -59,9 +63,8 @@ Day2025_08 >> getJBoxPairDistances [
 					 with: combo last
 					 with: (combo first distanceTo: combo last) ]).
 
-	resultSorted := result sorted: [ :a :b | a last <= b last ] .
-	
-	^ resultSorted
+	^ result sorted: [ :a :b | a last <= b last ] .
+
 ]
 
 { #category : 'initialization' }

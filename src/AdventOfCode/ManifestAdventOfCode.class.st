@@ -41,7 +41,7 @@ ManifestAdventOfCode class >> ruleModifiesCollectionRuleV1FalsePositive [
 ManifestAdventOfCode class >> ruleReCollectionAtCollectionSizeRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'AOCExtent class' #newWithInts: #true)) #'2025-11-07T08:25:16.474143-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#'AOCExtent class' #newWithInts: #true)) #'2025-11-07T08:25:16.474143-07:00') #(#(#RGMethodDefinition #(#Day2025_08 #connectJBoxesUntil: #false)) #'2025-12-08T10:58:29.135614-07:00') )
 ]
 
 { #category : 'code-critics' }
