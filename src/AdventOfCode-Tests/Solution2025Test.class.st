@@ -157,3 +157,22 @@ Solution2025Test >> testDay08 [
 	self assert: results last isNotNil .	
 	
 ]
+
+{ #category : 'tests' }
+Solution2025Test >> testDay09 [ 
+	| day results |
+	Transcript showCr: 'Advent of Code 2025' .
+	day := Day2025_09 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1:  {1}' 
+		format: (Array with: results first)) .
+
+	Transcript showCr: ('Part 2:  {1}' 
+		format: (Array with: results last)) .
+		
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+	
+]
