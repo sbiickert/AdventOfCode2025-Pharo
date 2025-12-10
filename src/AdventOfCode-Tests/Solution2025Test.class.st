@@ -162,11 +162,30 @@ Solution2025Test >> testDay08 [
 Solution2025Test >> testDay09 [ 
 	| day results |
 	Transcript showCr: 'Advent of Code 2025' .
-	day := Day2025_09 new isTest: false .
+	day := Day2025_09 new isTest: true .
 	Transcript showCr: day description .	
 	results := day solve .
 	
-	Transcript showCr: ('Part 1:  {1}' 
+	Transcript showCr: ('Part 1: the largest rectangle''s area is {1}' 
+		format: (Array with: results first)) .
+
+	Transcript showCr: ('Part 2: the area of the largest rectangle with only red and green tiles is {1}' 
+		format: (Array with: results last)) .
+		
+	self assert: results first isNotNil .
+	self assert: results last isNotNil .	
+	
+]
+
+{ #category : 'tests' }
+Solution2025Test >> testDay10 [
+	| day results |
+	Transcript showCr: 'Advent of Code 2025' .
+	day := Day2025_10 new isTest: false .
+	Transcript showCr: day description .	
+	results := day solve .
+	
+	Transcript showCr: ('Part 1: the fewest button presses required is {1}' 
 		format: (Array with: results first)) .
 
 	Transcript showCr: ('Part 2:  {1}' 
