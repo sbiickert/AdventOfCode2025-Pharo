@@ -20,7 +20,7 @@ ManifestAdventOfCode class >> ruleBadMessageRule2V1FalsePositive [
 ManifestAdventOfCode class >> ruleCollectionProtocolRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'Mask_2020_14 class' #resolveFloatingDefinition: #true)) #'2025-11-18T16:33:08.291093-07:00') #(#(#RGMethodDefinition #(#Day2025_03 #largestJoltageForBankPartTwo: #false)) #'2025-12-03T10:58:56.838044-07:00') )
+	^ #(#(#(#RGMethodDefinition #(#'Mask_2020_14 class' #resolveFloatingDefinition: #true)) #'2025-11-18T16:33:08.291093-07:00') #(#(#RGMethodDefinition #(#Day2025_03 #largestJoltageForBankPartTwo: #false)) #'2025-12-03T10:58:56.838044-07:00') #(#(#RGMethodDefinition #(#'AOCCoord class' #createCompressionMaps: #true)) #'2025-12-09T16:33:20.73719-07:00') )
 ]
 
 { #category : 'code-critics' }
@@ -56,6 +56,13 @@ ManifestAdventOfCode class >> ruleReNoNilAssignationInInitializeRuleV1FalsePosit
 
 	<ignoreForCoverage>
 	^ #(#(#(#RGMethodDefinition #(#AOCExtent #initialize #false)) #'2025-11-06T20:04:25.583359-07:00') )
+]
+
+{ #category : 'code-critics' }
+ManifestAdventOfCode class >> ruleReStatementsAfterReturnConditionalRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#AOCLine #direction #false)) #'2025-12-09T07:35:30.640972-07:00') )
 ]
 
 { #category : 'code-critics' }

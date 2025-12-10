@@ -33,21 +33,21 @@ AOCGrid class >> newWith: lines [
 ]
 
 { #category : 'converting' }
-AOCGrid >> asString [ 
-	|str|
-	str := '' .
-	(extent isEmpty) ifTrue: [ ^ str ] .
-	extent yInterval do: [ :row |
-		| rowValues |
-		rowValues := OrderedCollection new .
-		extent xInterval do: [ :col |
-			| coord |
-			coord := AOCCoord new point: col @ row .
-			rowValues add: (self at: coord) .
-		 ] .
-		str := str , Character cr , rowValues joinUsing: ' ' .
-	 ] .
-	^ str .
+AOCGrid >> asString [
+
+	| rows |
+	rows := OrderedCollection new.
+	extent isEmpty ifTrue: [ ^ '' ].
+	rows addAll: (extent yInterval collect: [ :row |
+				 | rowValues |
+				 rowValues := OrderedCollection new.
+				 rowValues addAll: (extent xInterval collect: [ :col |
+							  | coord |
+							  coord := AOCCoord new point: col @ row.
+							  self at: coord ]).
+				 rowValues joinUsing: ' ' ]).
+			
+	^ rows joinUsing: Character cr
 ]
 
 { #category : 'accessing' }

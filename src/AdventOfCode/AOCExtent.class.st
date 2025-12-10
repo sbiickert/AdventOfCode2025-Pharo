@@ -47,8 +47,8 @@ AOCExtent >> allCoords [
 	| result |
 	self isEmpty ifTrue: [^ Array new ] .
 	result := OrderedCollection new .
-	1 to: self height do: [ :r |
-		1 to: self width do: [ :c | result add: (AOCCoord new point: c @ r) ] .
+	self top to: self bottom do: [ :r |
+		self left to: self right do: [ :c | result add: (AOCCoord new point: c @ r) ] .
 	] .
 	^ result .
 ]
@@ -56,6 +56,11 @@ AOCExtent >> allCoords [
 { #category : 'accessing' }
 AOCExtent >> area [
 	^ self width * self height .
+]
+
+{ #category : 'converting' }
+AOCExtent >> asString [
+	^ '[{1},{2}' format: { self min asString . self max asString }
 ]
 
 { #category : 'accessing' }

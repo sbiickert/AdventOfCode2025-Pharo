@@ -12,6 +12,32 @@ Class {
 	#tag : 'Geometry'
 }
 
+{ #category : 'utilities' }
+AOCCoord class >> createCompressionMaps: coords [
+	|setX sortedX xMap xMapR setY sortedY yMap yMapR|
+	
+	setX := Set new .
+	setY := Set new .
+	coords do: [ :c | setX add: c x . setY add: c y ] .
+
+	sortedX := setX sorted .
+	sortedY := setY sorted .
+
+	xMap := Dictionary new .
+	xMapR := Dictionary new .
+	1 to: sortedX size do: [ :i |
+		xMap at: i put: (sortedX at: i) .
+		xMapR at: (sortedX at: i) put: i ] .
+	yMap := Dictionary new .
+	yMapR := Dictionary new .
+	1 to: sortedY size do: [ :i |
+		yMap at: i put: (sortedY at: i) .
+		yMapR at: (sortedY at: i) put: i ] .	
+	
+	^ Dictionary newFromPairs: { 'xExpand' . xMap . 'xCompress' . xMapR .
+										'yExpand' . yMap . 'yCompress' . yMapR . } .
+]
+
 { #category : 'accessing' }
 AOCCoord class >> offset: aDir [
 	(aDir = AOCDir north) ifTrue: [^ self new point:  0 @ -1]  .
@@ -61,6 +87,11 @@ AOCCoord >> asString [
 { #category : 'accessing - structure variables' }
 AOCCoord >> col [
 	^ pt x .
+]
+
+{ #category : 'converting' }
+AOCCoord >> compressXMap: xMap yMap: yMap [
+	^ self class new point: (xMap at: self x) @ (yMap at: self y) .
 ]
 
 { #category : 'comparing' }
