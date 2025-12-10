@@ -56,6 +56,11 @@ AOCLine >> end: aCoord [
 	^ self .
 ]
 
+{ #category : 'comparing' }
+AOCLine >> hash [ 
+	^ start hash bitXor: end hash .
+]
+
 { #category : 'initialization' }
 AOCLine >> initialize [
 	super initialize.
