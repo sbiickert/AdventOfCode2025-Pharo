@@ -36,43 +36,43 @@ Day2025_10 >> solve [
 
 { #category : 'execution' }
 Day2025_10 >> solvePartOne [
-	|totalPressCount|
-	totalPressCount := 0 .
-	
-	machines do: [ :machine |
-		|stack pressCount|
-		pressCount := -1 .
-		stack := OrderedCollection new .
-		stack add: (OrderedCollection newFrom: #(0)) .
-		
-		[ pressCount < 0 ] whileTrue: [ 
-			|newStack|
-			newStack := OrderedCollection new. 
-			stack do: [ :state |
 
-				(pressCount < 0) ifTrue: [
-					(state first = machine target) ifTrue: [
-						"self halt ."
-						pressCount := (state size) - 1 .
-						"Transcript showCr: pressCount ."
-					]
-					ifFalse: [
-						machine buttons do: [ :button |
-							|newState|
-							newState := state copy .
-							newState add: button .
-							newState at: 1 put: (state first bitXor: button) .
-							newStack add: newState .
-						] .
+	| totalPressCount|
+	totalPressCount := 0.
+
+	machines do: [ :machine |
+		| stack pressCount |
+		pressCount := -1.
+		stack := OrderedCollection new.
+		stack add: (OrderedCollection newFrom: #( 0 )).
+
+		[ pressCount < 0 ] whileTrue: [
+			| newStack |
+			newStack := OrderedCollection new.
+			stack do: [ :state |
+					pressCount < 0 ifTrue: [
+						newStack addAll:
+							(machine buttonsBinary collect: [ :button |
+								| newValue newState |
+								newState := state copy.
+								newValue := state first bitXor: button .
+								(newValue = machine target) ifTrue: [
+									"self halt ."
+									pressCount := state size .
+									"Transcript showCr: pressCount ."
+								] ifFalse: [
+									newState add: button.
+									newState at: 1 put: newValue.
+							 	].
+								newState .
+							]) .
 					] .
-				] .
-			
 			] .
 			stack := newStack .
-		] .
-		
-		totalPressCount := totalPressCount + pressCount .
-	] .
+		].
 
-	^ totalPressCount .
+		totalPressCount := totalPressCount + pressCount .
+	].
+
+	^ totalPressCount
 ]

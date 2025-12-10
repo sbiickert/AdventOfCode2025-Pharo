@@ -6,6 +6,7 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'iLightsTarget',
+		'buttonsBinary',
 		'buttons',
 		'joltages',
 		'src'
@@ -27,11 +28,16 @@ Machine_2025_10 >> buttons [
 	^ buttons copy .
 ]
 
+{ #category : 'accessing' }
+Machine_2025_10 >> buttonsBinary [
+	^ buttonsBinary .
+]
+
 { #category : 'initialization' }
 Machine_2025_10 >> initialize [
 	super initialize .
 	iLightsTarget := 0 .
-	buttons := OrderedCollection new .
+	buttonsBinary := OrderedCollection new .
 	joltages := OrderedCollection new .
 	src := '' .
 ]
@@ -64,7 +70,7 @@ Machine_2025_10 >> lightsStringToNumber: str [
 { #category : 'parsing' }
 Machine_2025_10 >> parseFrom: defn [
 	"[...#.] (0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4) {7,5,12,7,2}"
-	|split lights bNums|
+	|split lights|
 	
 	split := OrderedCollection newFrom: (defn splitOn: ' ') .
 	split := split collect: [ :s | 
@@ -72,19 +78,19 @@ Machine_2025_10 >> parseFrom: defn [
 	
 	lights := split removeFirst .
 	
-	bNums := split collect: [ :s | 
+	buttons := split collect: [ :s | 
 		|nums| 
 		nums := s splitOn: $, .
 		nums collect: [ :n | n asInteger ]
 	] .	
-	joltages := bNums removeLast .
+	joltages := buttons removeLast .
 	
 	"lights is a string of . and #, 
-	 bNums is a collection of collections of ints, 
+	 buttons is a collection of collections of ints, 
 	 joltages is a collection of ints"
 	
 	iLightsTarget := self lightsStringToNumber: lights .
-	buttons := bNums collect: [ :b | self intCollToNumber: b ] .
+	buttonsBinary := buttons collect: [ :b | self intCollToNumber: b ] .
 
 	^ self .
 ]
