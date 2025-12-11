@@ -12,6 +12,14 @@ Class {
 	#tag : 'Solution'
 }
 
+{ #category : 'nil' }
+Day2025_10 >> addButton: button toJoltage: joltage [
+	|newJoltage|
+	newJoltage := joltage copy .
+	button do: [ :b | newJoltage at: b put: (joltage at: b) + 1 ] .
+	^ newJoltage 
+]
+
 { #category : 'initialization' }
 Day2025_10 >> initialize [ 
 	super initialize .
@@ -22,6 +30,12 @@ Day2025_10 >> initialize [
 ]
 
 { #category : 'execution' }
+Day2025_10 >> joltage: current overshoots: target [
+	1 to: current size do: [ :i | ((current at: i) > (target at: i)) ifTrue: [ ^ true ] ] .
+	^ false .
+]
+
+{ #category : 'execution' }
 Day2025_10 >> solve [
 	|p1 p2|
 	self loadInputForTest: self isTest .
@@ -29,7 +43,7 @@ Day2025_10 >> solve [
 	machines := input collect: [ :line | Machine_2025_10 newFrom: line ] .
 	
 	p1 := self solvePartOne .
-	p2 := nil .
+	p2 := self solvePartTwo .
 	
 	^ Array with: p1 with: p2 .
 ]
@@ -44,7 +58,7 @@ Day2025_10 >> solvePartOne [
 		| stack pressCount |
 		pressCount := -1.
 		stack := OrderedCollection new.
-		stack add: (OrderedCollection newFrom: #( 0 )).
+		stack add: #( 0 0 ). "First digit is state of display, last is press count"
 
 		[ pressCount < 0 ] whileTrue: [
 			| newStack |
@@ -54,16 +68,11 @@ Day2025_10 >> solvePartOne [
 						newStack addAll:
 							(machine buttonsBinary collect: [ :button |
 								| newValue newState |
-								newState := state copy.
 								newValue := state first bitXor: button .
+								newState := { newValue . (state last + 1) } .
 								(newValue = machine target) ifTrue: [
-									"self halt ."
-									pressCount := state size .
-									"Transcript showCr: pressCount ."
-								] ifFalse: [
-									newState add: button.
-									newState at: 1 put: newValue.
-							 	].
+									pressCount := newState last .
+								] .
 								newState .
 							]) .
 					] .
@@ -71,6 +80,45 @@ Day2025_10 >> solvePartOne [
 			stack := newStack .
 		].
 
+		totalPressCount := totalPressCount + pressCount .
+	].
+
+	^ totalPressCount
+]
+
+{ #category : 'execution' }
+Day2025_10 >> solvePartTwo [
+	| totalPressCount|
+	totalPressCount := 0.
+
+	machines do: [ :machine |
+		| stack pressCount |
+		pressCount := -1.
+		stack := OrderedCollection new.
+		stack add: { machine zeroJoltage . 0 } . "First is state of joltage, last is press count"
+
+		[ pressCount < 0 ] whileTrue: [
+			| newStack |
+			newStack := OrderedCollection new.
+			stack do: [ :state |
+					pressCount < 0 ifTrue: [
+						machine buttons do: [ :button |
+							| newValue newState |
+							newValue := self addButton: button toJoltage: state first .
+							newState := { newValue . (state last + 1) } .
+							(self joltage: newValue overshoots: machine joltages) ifFalse: [
+								(newValue = machine joltages) ifTrue: [
+									pressCount := newState last .
+								] ifFalse: [
+									newStack add: newState .
+								].
+							] .
+						] .
+					] .
+			] .
+			stack := newStack .
+		].
+		self halt. 
 		totalPressCount := totalPressCount + pressCount .
 	].
 

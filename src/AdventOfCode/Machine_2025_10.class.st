@@ -25,7 +25,7 @@ Machine_2025_10 class >> newFrom: defn [
 
 { #category : 'accessing' }
 Machine_2025_10 >> buttons [
-	^ buttons copy .
+	^ buttons .
 ]
 
 { #category : 'accessing' }
@@ -37,6 +37,7 @@ Machine_2025_10 >> buttonsBinary [
 Machine_2025_10 >> initialize [
 	super initialize .
 	iLightsTarget := 0 .
+	buttons := OrderedCollection new .
 	buttonsBinary := OrderedCollection new .
 	joltages := OrderedCollection new .
 	src := '' .
@@ -47,7 +48,7 @@ Machine_2025_10 >> intCollToNumber: iColl [
 	|num|
 	num := 0 .
 	iColl do: [ :i |
-		num := num bitAt: i+1 put: 1 .
+		num := num bitAt: i put: 1 .
 	] .
 	
 	^ num .
@@ -55,7 +56,7 @@ Machine_2025_10 >> intCollToNumber: iColl [
 
 { #category : 'accessing' }
 Machine_2025_10 >> joltages [
-	^ joltages copy .
+	^ joltages .
 ]
 
 { #category : 'parsing' }
@@ -85,6 +86,10 @@ Machine_2025_10 >> parseFrom: defn [
 	] .	
 	joltages := buttons removeLast .
 	
+	"Change to 1-based indexing"
+	buttons do: [ :button |
+		1 to: button size do: [ :b | button at: b put: (button at: b) + 1 ]] .
+	
 	"lights is a string of . and #, 
 	 buttons is a collection of collections of ints, 
 	 joltages is a collection of ints"
@@ -98,4 +103,12 @@ Machine_2025_10 >> parseFrom: defn [
 { #category : 'accessing' }
 Machine_2025_10 >> target [
 	^ iLightsTarget .
+]
+
+{ #category : 'nil' }
+Machine_2025_10 >> zeroJoltage [ 
+	|z|
+	z := OrderedCollection new .
+	z addAll: (joltages collect: [ :j | 0 ]) .
+	^ z .
 ]
