@@ -200,14 +200,14 @@ Solution2025Test >> testDay10 [
 Solution2025Test >> testDay11 [
 	| day results |
 	Transcript showCr: 'Advent of Code 2025' .
-	day := Day2025_11 new isTest: false .
+	day := Day2025_11 new isTest: true .
 	Transcript showCr: day description .	
 	results := day solve .
 	
 	Transcript showCr: ('Part 1: the total number of paths is {1}' 
 		format: (Array with: results first)) .
 
-	Transcript showCr: ('Part 2:  {1}' 
+	Transcript showCr: ('Part 2: the total number of paths with dac and fft is {1}' 
 		format: (Array with: results last)) .
 		
 	self assert: results first isNotNil .
